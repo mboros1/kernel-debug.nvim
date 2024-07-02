@@ -72,6 +72,5 @@ function M.show_popup()
 		vim.keymap.del("n", "<leader>kq")
 	end
 	M.layout:mount()
-	M.input_box:mount()
 end
 return M
