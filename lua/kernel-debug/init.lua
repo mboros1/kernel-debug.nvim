@@ -1,23 +1,8 @@
--- anything in this file automatically gets run when you require this plugin
-local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-if not vim.loop.fs_stat(lazypath) then
-	vim.fn.system({
-		"git",
-		"clone",
-		"--filter=blob:none",
-		"https://github.com/folke/lazy.nvim.git",
-		"--branch=stable", -- latest stable release
-		lazypath,
-	})
+local M = {}
+-- Function to setup the plugin
+function M.setup(opts)
+	-- Default options
+	opts = opts or {}
+	print("kernel-debug.nvim loaded with options: ", vim.inspect(opts))
 end
-vim.opt.rtp:prepend(lazypath)
--- Setup lazy.nvim
-require("lazy").setup({
-	-- Add your plugins here
-	{
-		"your-username/kernel-debug.nvim",
-		config = function()
-			-- Your plugin configuration here
-		end,
-	},
-})
+return M
