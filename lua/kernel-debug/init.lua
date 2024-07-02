@@ -41,7 +41,7 @@ function M.show_popup()
 			Layout.Box(M.popup_one, { size = "40%" }),
 			Layout.Box(M.popup_two, { size = "60%" }),
 			Layout.Box(M.input_box, { size = 3 }),
-		}, { dir = "row" })
+		}, { dir = "col" })
 	)
 	-- Keybinding to close the windows
 	local function close_windows()
