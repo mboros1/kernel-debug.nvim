@@ -17,7 +17,17 @@ function M.show_popup()
 		enter = true,
 		border = "single",
 	}), Popup({
-		border = "double",
+		border = "single",
+	})
+	-- Create the input box
+	M.input_box = Popup({
+		enter = true,
+		border = "single",
+		position = "bottom",
+		size = {
+			width = "100%",
+			height = 3,
+		},
 	})
 	M.layout = Layout(
 		{
@@ -30,12 +40,14 @@ function M.show_popup()
 		Layout.Box({
 			Layout.Box(M.popup_one, { size = "40%" }),
 			Layout.Box(M.popup_two, { size = "60%" }),
+			Layout.Box(M.input_box, { size = 3 }),
 		}, { dir = "row" })
 	)
 	-- Keybinding to close the windows
 	local function close_windows()
 		M.popup_one:unmount()
 		M.popup_two:unmount()
+		M.input_box:unmount()
 		M.layout:unmount()
 		M.unmap_close_key()
 	end
