@@ -59,7 +59,10 @@ function M.show_popup()
 		},
 		Layout.Box({
 			display_layout,
-			Layout.Box(M.input_box, { size = 3 }),
+			Layout.Box(M.input_box, { size = {
+				width = "100%",
+				height = 3,
+			} }),
 		}, { dir = "col" })
 	)
 	-- Keybinding to close the windows
