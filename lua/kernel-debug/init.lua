@@ -18,21 +18,22 @@ function M.show_popup()
 
 	M.top_left_popup = Popup({ border = "single" })
 	M.top_right_popup = Popup({ border = "single" })
-	M.bottom_input = Input({
-		border = "single",
-	}, {
-		prompt = "> ",
-		default_value = "",
-		on_close = function()
-			print("Input closed")
-		end,
-		on_submit = function(value)
-			print("Value submitted: ", value)
-		end,
-		on_change = function(value)
-			print("Value changed: ", value)
-		end,
-	})
+	-- M.bottom_input = Input({
+	-- 	border = "single",
+	-- }, {
+	-- 	prompt = "> ",
+	-- 	default_value = "",
+	-- 	on_close = function()
+	-- 		print("Input closed")
+	-- 	end,
+	-- 	on_submit = function(value)
+	-- 		print("Value submitted: ", value)
+	-- 	end,
+	-- 	on_change = function(value)
+	-- 		print("Value changed: ", value)
+	-- 	end,
+	-- })
+	M.bottom_input = Popup({ border = "single" })
 
 	M.layout = Layout(
 		{
