@@ -12,9 +12,11 @@ end
 function M.show_popup()
 	local Popup = require("nui.popup")
 	local Layout = require("nui.layout")
-	local popup_one = Popup({
+	local popup_one, popup_two = Popup({
 		enter = true,
 		border = "single",
+	}), Popup({
+		border = "double",
 	})
 	local layout = Layout(
 		{
@@ -26,6 +28,7 @@ function M.show_popup()
 		},
 		Layout.Box({
 			Layout.Box(popup_one, { size = "40%" }),
+			Layout.Box(popup_two, { size = "60%" }),
 		}, { dir = "row" })
 	)
 	local current_dir = "row"
@@ -33,10 +36,12 @@ function M.show_popup()
 		if current_dir == "col" then
 			layout:update(Layout.Box({
 				Layout.Box(popup_one, { size = "40%" }),
+				Layout.Box(popup_two, { size = "60%" }),
 			}, { dir = "row" }))
 			current_dir = "row"
 		else
 			layout:update(Layout.Box({
+				Layout.Box(popup_two, { size = "60%" }),
 				Layout.Box(popup_one, { size = "40%" }),
 			}, { dir = "col" }))
 			current_dir = "col"
