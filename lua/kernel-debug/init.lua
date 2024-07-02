@@ -13,6 +13,8 @@ end
 function M.show_popup()
 	local Popup = require("nui.popup")
 	local Layout = require("nui.layout")
+	local Input = require("nui.input")
+	local event = require("nui.utils.autocmd").event
 	M.popup_one, M.popup_two = Popup({
 		enter = true,
 		border = "single",
@@ -20,14 +22,25 @@ function M.show_popup()
 		border = "single",
 	})
 	-- Create the input box
-	M.input_box = Popup({
-		enter = true,
+	M.input_box = Input({
 		border = "single",
-		position = "bottom",
+		position = "50%",
 		size = {
 			width = "100%",
 			height = 3,
 		},
+	}, {
+		prompt = "> ",
+		default_value = "",
+		on_close = function()
+			print("Input closed!")
+		end,
+		on_submit = function(value)
+			print("Value submitted: ", value)
+		end,
+		on_change = function(value)
+			print("Value changed: ", value)
+		end,
 	})
 	M.layout = Layout(
 		{
@@ -63,5 +76,6 @@ function M.show_popup()
 		vim.keymap.del("n", "<leader>kq")
 	end
 	M.layout:mount()
+	M.input_box:mount()
 end
 return M
