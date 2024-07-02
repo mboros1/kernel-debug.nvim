@@ -59,8 +59,8 @@ function M.show_popup()
 		{
 			position = "50%",
 			size = {
-				width = 80,
-				height = 40,
+				width = "90%",
+				height = "90%",
 			},
 		},
 		Layout.Box({
@@ -68,7 +68,7 @@ function M.show_popup()
 				Layout.Box(M.bottom_left_popup, { size = "50%" }),
 				Layout.Box(M.bottom_right_popup, { size = "50%" }),
 			}, { dir = "row", size = "60%" }),
-			Layout.Box(M.bottom_input, { size = "40%" }),
+			Layout.Box(M.bottom_input, { size = "10%" }),
 		}, { dir = "col" })
 	)
 
