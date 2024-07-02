@@ -42,6 +42,12 @@ function M.show_popup()
 			print("Value changed: ", value)
 		end,
 	})
+	-- Create the nested layout for the two display boxes
+	local display_layout = Layout.Box({
+		Layout.Box(M.popup_one, { size = "50%" }),
+		Layout.Box(M.popup_two, { size = "50%" }),
+	}, { dir = "col" })
+	-- Create the main layout with the display layout and the input box
 	M.layout = Layout(
 		{
 			position = "50%",
@@ -51,8 +57,7 @@ function M.show_popup()
 			},
 		},
 		Layout.Box({
-			Layout.Box(M.popup_one, { size = "40%" }),
-			Layout.Box(M.popup_two, { size = "60%" }),
+			display_layout,
 			Layout.Box(M.input_box, { size = 3 }),
 		}, { dir = "col" })
 	)
