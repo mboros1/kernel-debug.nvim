@@ -15,25 +15,16 @@ function M.show_popup()
 	local Layout = require("nui.layout")
 	local Input = require("nui.input")
 	local event = require("nui.utils.autocmd").event
-	M.popup_one, M.popup_two = Popup({
-		enter = true,
+
+	M.top_left_popup = Popup({ border = "single" })
+	M.top_right_popup = Popup({ border = "single" })
+	M.bottom_input = Input({
 		border = "single",
-	}), Popup({
-		border = "single",
-	})
-	-- Create the input box
-	M.input_box = Input({
-		border = "single",
-		position = "50%",
-		size = {
-			width = "100%",
-			height = 3,
-		},
 	}, {
 		prompt = "> ",
 		default_value = "",
 		on_close = function()
-			print("Input closed!")
+			print("Input closed")
 		end,
 		on_submit = function(value)
 			print("Value submitted: ", value)
@@ -42,25 +33,24 @@ function M.show_popup()
 			print("Value changed: ", value)
 		end,
 	})
-	-- Create the nested layout for the two display boxes
-	local display_layout = Layout.Box({
-		Layout.Box(M.popup_one, { size = "50%" }),
-		Layout.Box(M.popup_two, { size = "50%" }),
-	}, { dir = "col", size = "90%" })
-	-- Create the main layout with the display layout and the input box
+
 	M.layout = Layout(
 		{
 			position = "50%",
 			size = {
 				width = "80%",
-				height = "80%",
+				height = "90%",
 			},
 		},
 		Layout.Box({
-			display_layout,
-			Layout.Box(M.input_box, { size = "10%" }),
-		}, { dir = "col" })
+			Layout.Box({
+				Layout.Box(M.top_left_popup, { size = { width = "45%", height = "100%" } }),
+				Layout.Box(M.top_right_popup, { size = { width = "55%", height = "100%" } }),
+			}, { dir = "col", size = { width = "100%", height = "90%" } }),
+			Layout.Box(M.bottom_input, { size = { width = "100%", height = "10%" } }),
+		}, { dir = "row" })
 	)
+
 	-- Keybinding to close the windows
 	local function close_windows()
 		M.popup_one:unmount()
