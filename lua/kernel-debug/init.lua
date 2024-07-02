@@ -23,20 +23,10 @@ function M.show_popup()
 	}, {
 		prompt = "> ",
 		default_value = "",
-		on_close = function()
-			print("Input closed")
-		end,
 		on_submit = function(value)
 			print("Value submitted: ", value)
 		end,
-		on_change = function(value)
-			print("Value changed: ", value)
-		end,
 	})
-
-	M.top_popup = Popup({ border = "double" })
-	M.top_left_popup = Popup({ border = "single" })
-	M.top_right_popup = Popup({ border = "single" })
 
 	M.layout = Layout(
 		{
@@ -57,8 +47,8 @@ function M.show_popup()
 
 	-- Keybinding to close the windows
 	local function close_windows()
-		M.popup_one:unmount()
-		M.popup_two:unmount()
+		M.top_right_popup:unmount()
+		M.top_left_popup:unmount()
 		M.input_box:unmount()
 		M.layout:unmount()
 		M.unmap_close_key()
