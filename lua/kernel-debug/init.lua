@@ -9,6 +9,7 @@ function M.setup(opts)
 		M.show_popup()
 	end, { nargs = 0 })
 end
+-- Function to create and show the pop-up
 function M.show_popup()
 	local Popup = require("nui.popup")
 	local Layout = require("nui.layout")
@@ -31,22 +32,14 @@ function M.show_popup()
 			Layout.Box(popup_two, { size = "60%" }),
 		}, { dir = "row" })
 	)
-	local current_dir = "row"
-	popup_one:map("n", "r", function()
-		if current_dir == "col" then
-			layout:update(Layout.Box({
-				Layout.Box(popup_one, { size = "40%" }),
-				Layout.Box(popup_two, { size = "60%" }),
-			}, { dir = "row" }))
-			current_dir = "row"
-		else
-			layout:update(Layout.Box({
-				Layout.Box(popup_two, { size = "60%" }),
-				Layout.Box(popup_one, { size = "40%" }),
-			}, { dir = "col" }))
-			current_dir = "col"
-		end
-	end, {})
+	-- Keybinding to close the windows
+	local function close_windows()
+		popup_one:unmount()
+		popup_two:unmount()
+		layout:unmount()
+	end
+	popup_one:map("n", "<leader>q", close_windows, { noremap = true, silent = true })
+	popup_two:map("n", "<leader>q", close_windows, { noremap = true, silent = true })
 	layout:mount()
 end
 return M
