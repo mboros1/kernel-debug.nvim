@@ -18,22 +18,21 @@ function M.show_popup()
 
 	M.top_left_popup = Popup({ border = "single" })
 	M.top_right_popup = Popup({ border = "single" })
-	-- M.bottom_input = Input({
-	-- 	border = "single",
-	-- }, {
-	-- 	prompt = "> ",
-	-- 	default_value = "",
-	-- 	on_close = function()
-	-- 		print("Input closed")
-	-- 	end,
-	-- 	on_submit = function(value)
-	-- 		print("Value submitted: ", value)
-	-- 	end,
-	-- 	on_change = function(value)
-	-- 		print("Value changed: ", value)
-	-- 	end,
-	-- })
-	M.bottom_input = Popup({ border = "single" })
+	M.bottom_input = Input({
+		border = "single",
+	}, {
+		prompt = "> ",
+		default_value = "",
+		on_close = function()
+			print("Input closed")
+		end,
+		on_submit = function(value)
+			print("Value submitted: ", value)
+		end,
+		on_change = function(value)
+			print("Value changed: ", value)
+		end,
+	})
 
 	-- M.layout = Layout(
 	-- 	{
@@ -69,7 +68,7 @@ function M.show_popup()
 				Layout.Box(M.bottom_left_popup, { size = "50%" }),
 				Layout.Box(M.bottom_right_popup, { size = "50%" }),
 			}, { dir = "row", size = "60%" }),
-			Layout.Box(M.top_popup, { size = "40%" }),
+			Layout.Box(M.bottom_input, { size = "40%" }),
 		}, { dir = "col" })
 	)
 
