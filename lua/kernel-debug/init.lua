@@ -1,3 +1,4 @@
+-- kernel-debug.nvim/lua/kernel-debug/init.lua
 local M = {}
 -- Function to setup the plugin
 function M.setup(opts)
