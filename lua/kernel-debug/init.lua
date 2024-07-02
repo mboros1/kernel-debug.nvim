@@ -8,18 +8,22 @@ function M.setup(opts)
 	vim.api.nvim_create_user_command("KernelDebug", function()
 		M.show_popup()
 	end, { nargs = 0 })
+	-- Keybinding to open the pop-up
+	vim.keymap.set("n", "<leader>kd", M.show_popup, { desc = "Open Kernel Debug window" })
+	-- Keybinding to close the pop-up
+	vim.keymap.set("n", "<leader>kq", M.close_popup, { desc = "Close Kernel Debug window" })
 end
 -- Function to create and show the pop-up
 function M.show_popup()
 	local Popup = require("nui.popup")
 	local Layout = require("nui.layout")
-	local popup_one, popup_two = Popup({
+	M.popup_one, M.popup_two = Popup({
 		enter = true,
 		border = "single",
 	}), Popup({
 		border = "double",
 	})
-	local layout = Layout(
+	M.layout = Layout(
 		{
 			position = "50%",
 			size = {
@@ -28,18 +32,18 @@ function M.show_popup()
 			},
 		},
 		Layout.Box({
-			Layout.Box(popup_one, { size = "40%" }),
-			Layout.Box(popup_two, { size = "60%" }),
+			Layout.Box(M.popup_one, { size = "40%" }),
+			Layout.Box(M.popup_two, { size = "60%" }),
 		}, { dir = "row" })
 	)
-	-- Keybinding to close the windows
-	local function close_windows()
-		popup_one:unmount()
-		popup_two:unmount()
-		layout:unmount()
+	M.layout:mount()
+end
+-- Function to close the pop-up
+function M.close_popup()
+	if M.popup_one and M.popup_two and M.layout then
+		M.popup_one:unmount()
+		M.popup_two:unmount()
+		M.layout:unmount()
 	end
-	popup_one:map("n", "<leader>q", close_windows, { noremap = true, silent = true })
-	popup_two:map("n", "<leader>q", close_windows, { noremap = true, silent = true })
-	layout:mount()
 end
 return M
