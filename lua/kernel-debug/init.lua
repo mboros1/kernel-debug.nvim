@@ -23,7 +23,7 @@ function M.show_popup()
 	}, {
 		prompt = "> ",
 		default_value = "",
-		on_submit = function(value)
+		on_change = function(value)
 			print("Value submitted: ", value)
 		end,
 	})
@@ -51,7 +51,6 @@ function M.show_popup()
 		M.top_left_popup:unmount()
 		M.input_box:unmount()
 		M.layout:unmount()
-		M.unmap_close_key()
 	end
 	-- Map <leader>kq to close the windows
 	vim.keymap.set(
@@ -60,10 +59,6 @@ function M.show_popup()
 		close_windows,
 		{ noremap = true, silent = true, desc = "Close Kernel Debug window" }
 	)
-	-- Store the function to unmap the keybinding
-	M.unmap_close_key = function()
-		vim.keymap.del("n", "<leader>kq")
-	end
 	M.layout:mount()
 end
 return M
