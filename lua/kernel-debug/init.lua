@@ -65,11 +65,11 @@ function M.show_popup()
 			},
 		},
 		Layout.Box({
-			Layout.Box(M.top_popup, { size = "40%" }),
 			Layout.Box({
 				Layout.Box(M.bottom_left_popup, { size = "50%" }),
 				Layout.Box(M.bottom_right_popup, { size = "50%" }),
 			}, { dir = "row", size = "60%" }),
+			Layout.Box(M.top_popup, { size = "40%" }),
 		}, { dir = "col" })
 	)
 
