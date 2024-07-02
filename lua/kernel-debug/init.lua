@@ -8,10 +8,6 @@ function M.setup(opts)
 	vim.api.nvim_create_user_command("KernelDebug", function()
 		M.show_popup()
 	end, { nargs = 0 })
-	-- Keybinding to open the pop-up
-	vim.keymap.set("n", "<leader>kd", M.show_popup, { desc = "Open Kernel Debug window" })
-	-- Keybinding to close the pop-up
-	vim.keymap.set("n", "<leader>kq", M.close_popup, { desc = "Close Kernel Debug window" })
 end
 -- Function to create and show the pop-up
 function M.show_popup()
@@ -27,8 +23,8 @@ function M.show_popup()
 		{
 			position = "50%",
 			size = {
-				width = 80,
-				height = "60%",
+				width = "80%",
+				height = "80%",
 			},
 		},
 		Layout.Box({
@@ -36,14 +32,24 @@ function M.show_popup()
 			Layout.Box(M.popup_two, { size = "60%" }),
 		}, { dir = "row" })
 	)
-	M.layout:mount()
-end
--- Function to close the pop-up
-function M.close_popup()
-	if M.popup_one and M.popup_two and M.layout then
+	-- Keybinding to close the windows
+	local function close_windows()
 		M.popup_one:unmount()
 		M.popup_two:unmount()
 		M.layout:unmount()
+		M.unmap_close_key()
 	end
+	-- Map <leader>kq to close the windows
+	vim.keymap.set(
+		"n",
+		"<leader>kq",
+		close_windows,
+		{ noremap = true, silent = true, desc = "Close Kernel Debug window" }
+	)
+	-- Store the function to unmap the keybinding
+	M.unmap_close_key = function()
+		vim.keymap.del("n", "<leader>kq")
+	end
+	M.layout:mount()
 end
 return M
