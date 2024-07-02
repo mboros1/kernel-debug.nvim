@@ -1,4 +1,3 @@
--- kernel-debug.nvim/lua/kernel-debug/init.lua
 local M = {}
 -- Function to setup the plugin
 function M.setup(opts)
@@ -47,7 +46,7 @@ function M.show_popup()
 	local display_layout = Layout.Box({
 		Layout.Box(M.popup_one, { size = "50%" }),
 		Layout.Box(M.popup_two, { size = "50%" }),
-	}, { dir = "col" })
+	}, { dir = "col", size = "90%" })
 	-- Create the main layout with the display layout and the input box
 	M.layout = Layout(
 		{
@@ -59,10 +58,7 @@ function M.show_popup()
 		},
 		Layout.Box({
 			display_layout,
-			Layout.Box(M.input_box, { size = {
-				width = "100%",
-				height = 3,
-			} }),
+			Layout.Box(M.input_box, { size = "10%" }),
 		}, { dir = "col" })
 	)
 	-- Keybinding to close the windows
