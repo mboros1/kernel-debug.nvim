@@ -35,21 +35,42 @@ function M.show_popup()
 	-- })
 	M.bottom_input = Popup({ border = "single" })
 
+	-- M.layout = Layout(
+	-- 	{
+	-- 		position = "50%",
+	-- 		size = {
+	-- 			width = "80%",
+	-- 			height = "90%",
+	-- 		},
+	-- 	},
+	-- 	Layout.Box({
+	-- 		Layout.Box({
+	-- 			Layout.Box(M.top_left_popup, { size = { width = "45%", height = "100%" } }),
+	-- 			Layout.Box(M.top_right_popup, { size = { width = "55%", height = "100%" } }),
+	-- 		}, { dir = "col", size = { width = "100%", height = "90%" } }),
+	-- 		Layout.Box(M.bottom_input, { size = { width = "100%", height = "10%" } }),
+	-- 	}, { dir = "row" })
+	-- )
+
+	M.top_popup = Popup({ border = "double" })
+	M.bottom_left_popup = Popup({ border = "single" })
+	M.bottom_right_popup = Popup({ border = "single" })
+
 	M.layout = Layout(
 		{
 			position = "50%",
 			size = {
-				width = "80%",
-				height = "90%",
+				width = 80,
+				height = 40,
 			},
 		},
 		Layout.Box({
+			Layout.Box(M.top_popup, { size = "40%" }),
 			Layout.Box({
-				Layout.Box(M.top_left_popup, { size = { width = "45%", height = "100%" } }),
-				Layout.Box(M.top_right_popup, { size = { width = "55%", height = "100%" } }),
-			}, { dir = "col", size = { width = "100%", height = "90%" } }),
-			Layout.Box(M.bottom_input, { size = { width = "100%", height = "10%" } }),
-		}, { dir = "row" })
+				Layout.Box(M.bottom_left_popup, { size = "50%" }),
+				Layout.Box(M.bottom_right_popup, { size = "50%" }),
+			}, { dir = "row", size = "60%" }),
+		}, { dir = "col" })
 	)
 
 	-- Keybinding to close the windows
