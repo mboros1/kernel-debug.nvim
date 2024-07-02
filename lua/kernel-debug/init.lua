@@ -35,8 +35,8 @@ function M.show_popup()
 	})
 
 	M.top_popup = Popup({ border = "double" })
-	M.bottom_left_popup = Popup({ border = "single" })
-	M.bottom_right_popup = Popup({ border = "single" })
+	M.top_left_popup = Popup({ border = "single" })
+	M.top_right_popup = Popup({ border = "single" })
 
 	M.layout = Layout(
 		{
@@ -48,10 +48,10 @@ function M.show_popup()
 		},
 		Layout.Box({
 			Layout.Box({
-				Layout.Box(M.bottom_left_popup, { size = "50%" }),
-				Layout.Box(M.bottom_right_popup, { size = "50%" }),
-			}, { dir = "row", size = "90%" }),
-			Layout.Box(M.bottom_input, { size = "10%" }),
+				Layout.Box(M.top_left_popup, { size = "55%" }),
+				Layout.Box(M.top_right_popup, { size = "45%" }),
+			}, { dir = "row", size = "95%" }),
+			Layout.Box(M.bottom_input, { size = "5%" }),
 		}, { dir = "col" })
 	)
 
