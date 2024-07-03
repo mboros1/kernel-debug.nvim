@@ -47,7 +47,7 @@ function M.show_popup()
 
 	-- Function to run the qemu command
 	local function run_qemu()
-		local cmd = "qemu-system-x86_64 -hda /path/to/image.qcow2" -- Replace with your qemu command
+		local cmd = "ls -l" -- Replace with your qemu command
 
 		vim.fn.jobstart(cmd, {
 			stdout_buffered = true,
