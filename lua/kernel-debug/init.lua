@@ -23,8 +23,9 @@ function M.show_popup()
 	}, {
 		prompt = "> ",
 		default_value = "",
-		on_change = function(value)
+		on_submit = function(value)
 			print("Value submitted: ", value)
+			M.show_popup()
 		end,
 	})
 
