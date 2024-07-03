@@ -50,7 +50,7 @@ function M.show_popup()
 	local function close_windows()
 		M.top_right_popup:unmount()
 		M.top_left_popup:unmount()
-		M.input_box:unmount()
+		M.bottom_input:unmount()
 		M.layout:unmount()
 	end
 	-- Map <leader>kq to close the windows
