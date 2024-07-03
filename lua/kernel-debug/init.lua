@@ -26,9 +26,15 @@ function M.show_popup()
 		col = math.ceil(width * 0.1),
 	}
 	local win = vim.api.nvim_open_win(buf, true, win_opts)
+	-- Make the buffer read-only
+	vim.api.nvim_buf_set_option(buf, "modifiable", false)
 
 	local function update_buffer_with_output(output)
+		-- Temporarily make the buffer modifiable to update it
+		vim.api.nvim_buf_set_option(buf, "modifiable", true)
 		vim.api.nvim_buf_set_lines(buf, -1, -1, false, output)
+		-- Make the buffer read-only again
+		vim.api.nvim_buf_set_option(buf, "modifiable", false)
 	end
 
 	-- Function to close the floating window and buffer
